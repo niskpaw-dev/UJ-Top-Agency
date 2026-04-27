@@ -267,8 +267,8 @@
 
     <div class="calc-wrap">
       <div class="calc-tabs" id="calcTabs">
-        <button class="calc-tab active" data-type="car" data-i18n="tab.car">🚗 Kereta</button>
-        <button class="calc-tab" data-type="motor" data-i18n="tab.motor">🏍️ Motosikal</button>
+        <button class="calc-tab active" data-type="car" data-i18n="tab.car">Kereta</button>
+        <button class="calc-tab" data-type="motor" data-i18n="tab.motor">Motosikal</button>
       </div>
 
       <div class="calc-box reveal-up">
@@ -414,7 +414,7 @@
         ic: $('icNo').value.trim(),
         address: $('address').value.trim().toUpperCase()
       };
-      const msg = `Hi UJ Top Agency, saya nak semak insurans ${d.type==='car'?'Kereta':'Motosikal'}.\n\n👤 *Nama:* ${d.name}\n🚙 *No Plat:* ${d.plate}\n🚘 *Model:* ${d.model}\n🪪 *No IC:* ${d.ic}\n🏠 *Alamat:* ${d.address}\n\nMohon sebut harga.`;
+      const msg = `Hi UJ Top Agency, saya nak semak insurans ${d.type==='car'?'Kereta':'Motosikal'}.\n\n👤 *Nama:* ${d.name}\n💎 *No Plat:* ${d.plate}\n🚘 *Model:* ${d.model}\n🪪 *No IC:* ${d.ic}\n🏠 *Alamat:* ${d.address}\n\nMohon sebut harga.`;
       
       $( 'fullPageLoader' ).style.display = 'flex';
       $( 'loadingText' ).innerText = i18n[currentLang]['loading.send'];
