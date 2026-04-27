@@ -293,7 +293,7 @@
   <section class="calc-section" style="padding-top: 120px; min-height: 90vh;">
     <div class="text-center mb-4">
       <h2 class="sec-title" data-i18n="calc.title">Semak <em>Sebut Harga</em> Anda</h2>
-      <p class="sec-desc" data-i18n="calc.desc">Sebut harga akan dihantar ke WhatsApp anda beserta maklumat NCD terkini.</p>
+      <p class="sec-desc" data-i18n="calc.desc">Sebut harga akan dihantar ke WhatsApp anda beserta maklumat terkini.</p>
     </div>
 
     <div class="calc-wrap">
@@ -309,6 +309,10 @@
           <input type="hidden" id="vehType" value="car">
           
           <div class="calc-form-grid" id="formFieldsGrid">
+            <div class="field full-width">
+              <label data-i18n="form.name">Nama Penuh</label>
+              <input type="text" id="custName" placeholder="Contoh: Ahmad Bin Ali" required>
+            </div>
             <div class="field">
               <label data-i18n="form.plate">No Plat Kenderaan</label>
               <input type="text" id="plateNo" placeholder="Contoh: WWA 1234" required>
@@ -321,7 +325,7 @@
               <label data-i18n="form.ic">No Kad Pengenalan</label>
               <input type="text" inputmode="numeric" id="icNo" placeholder="Contoh: 901201-10-1234" maxlength="14" required>
             </div>
-            <div class="field full-width">
+            <div class="field">
               <label data-i18n="form.address">Alamat Penuh</label>
               <input type="text" id="address" placeholder="Contoh: No 3A, Lorong Seri..." required>
             </div>
@@ -372,7 +376,7 @@
     if (loader) loader.style.display = 'none';
   }
 
-  // Hamburger Menu Logic (Bug 1 Fixed)
+  // Hamburger Menu Logic
   var hamburger = document.getElementById('hamburger');
   var navLinks = document.getElementById('navLinks');
   
@@ -419,6 +423,7 @@
       "calc.desc": "Sebut harga akan dihantar ke WhatsApp anda beserta maklumat terkini.",
       "tab.car": "🚗 Kereta",
       "tab.motor": "🏍️ Motosikal",
+      "form.name": "Nama Penuh",
       "form.plate": "No Plat Kenderaan",
       "form.model": "Model Kenderaan",
       "form.ic": "No Kad Pengenalan",
@@ -438,6 +443,7 @@
       "calc.desc": "Your quote and latest info will be sent directly to your WhatsApp.",
       "tab.car": "🚗 Car",
       "tab.motor": "🏍️ Motorcycle",
+      "form.name": "Full Name",
       "form.plate": "Vehicle Plate No",
       "form.model": "Vehicle Model",
       "form.ic": "IC Number",
@@ -450,7 +456,7 @@
   var currentLang = 'ms';
 
   document.addEventListener('DOMContentLoaded', function() {
-    console.log('App generated using GAS WebApp Builder - MultiPage SPA (Bug Fixed)');
+    console.log('App generated using GAS WebApp Builder - MultiPage SPA');
 
     // Theme Toggle
     var themeToggle = document.getElementById('themeToggle');
@@ -513,14 +519,15 @@
       e.preventDefault();
       
       var type = vehInput.value;
+      var name = document.getElementById('custName').value.trim().toUpperCase();
       var plate = document.getElementById('plateNo').value.trim().toUpperCase();
       var model = document.getElementById('vehModel').value.trim().toUpperCase();
       var ic = document.getElementById('icNo').value.trim();
       var address = document.getElementById('address').value.trim().toUpperCase();
       
-      if (!plate || !ic || !model || !address) return;
+      if (!name || !plate || !ic || !model || !address) return;
 
-      var payload = { type: type, plate: plate, model: model, ic: ic, address: address };
+      var payload = { type: type, name: name, plate: plate, model: model, ic: ic, address: address };
       showFullPageLoading(i18n[currentLang]['loading.send']);
 
       // Validasi GAS_URL untuk mencegah error fetch jika URL belum diisi
@@ -549,6 +556,7 @@
       
       // Format Mesej WhatsApp
       var textWA = "Hi UJ Top Agency, saya nak semak harga insurans " + (data.type === 'car' ? 'Kereta' : 'Motosikal') + ".\n\n" +
+                   "👤 *Nama:* " + data.name + "\n" +
                    "🚙 *No Plat:* " + data.plate + "\n" +
                    "🚘 *Model:* " + data.model + "\n" +
                    "🪪 *No IC:* " + data.ic + "\n" +
@@ -560,7 +568,7 @@
       // Reset Form
       document.getElementById('quoteForm').reset();
       
-      // Bug 2 Fixed: Ganti window.open kepada window.location.href untuk elak popup blocker
+      // Ganti window.open kepada window.location.href untuk elak popup blocker
       window.location.href = waURL;
       
       // Paparan berjaya di belakang jika user menekan 'back' dari WhatsApp
