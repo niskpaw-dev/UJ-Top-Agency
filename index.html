@@ -310,7 +310,7 @@
 
 <!-- ============== NAV ============== -->
 <nav class="nav" id="nav">
-  <a onclick="showPage('home')" class="brand reveal-up">
+  <a onclick="showPage('home')" class="brand">
     <div class="brand-shield">UJ</div>
     <div class="brand-text">
       <div class="main">Top Agency</div>
@@ -319,11 +319,11 @@
   </a>
   
   <ul class="nav-links" id="navLinks">
-    <li class="reveal-up delay-100"><a onclick="showPage('home')" id="nav-home" class="active-link" data-i18n="nav.home">Utama</a></li>
-    <li class="reveal-up delay-200"><a onclick="showPage('calculator')" id="nav-calc" data-i18n="nav.calc">Kira Insurans</a></li>
+    <li><a onclick="showPage('home')" id="nav-home" class="active-link" data-i18n="nav.home">Utama</a></li>
+    <li><a onclick="showPage('calculator')" id="nav-calc" data-i18n="nav.calc">Kira Insurans</a></li>
   </ul>
 
-  <div class="nav-controls reveal-up delay-300">
+  <div class="nav-controls">
     <button class="btn-icon" id="themeToggle" aria-label="Toggle Theme">🌙</button>
     <button class="btn-icon lang-toggle" id="langToggle">EN</button>
     <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
@@ -617,7 +617,7 @@
     themeToggle.addEventListener('click', function() {
       currentTheme = currentTheme === 'light' ? 'dark' : 'light';
       document.body.setAttribute('data-theme', currentTheme);
-      themeToggle.innerText = currentTheme === 'light' ? '☀️' : '🌙';
+      themeToggle.innerText = currentTheme === 'light' ? '🌙' : '☀️';
     });
 
     // Language Toggle
